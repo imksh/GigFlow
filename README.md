@@ -117,3 +117,41 @@ PORT=5001
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 NODE_ENV=development
+```
+
+---
+
+## 🚀 Setup Instructions
+
+Backend
+
+```
+cd server
+npm install
+npm run dev
+```
+
+Frontend
+
+```
+cd client
+npm install
+npm run dev
+```
+---
+
+## 📹 Demo Video
+
+A full hiring workflow demonstration is available here:
+Loom Video: https://drive.google.com/file/d/182knvFQoMbITkdLxYuu0nNYU7LLb4IwM/view
+
+---
+
+## 📌 Author
+
+Karan Kumar
+Full Stack Developer
+Built for the ServiceHive Assignment Round
+
+
+---
