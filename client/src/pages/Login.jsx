@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRive, useStateMachineInput } from "@rive-app/react-canvas";
 import { TbLoader2 } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GoEyeClosed, GoEye } from "react-icons/go";
 import toast from "react-hot-toast";
 import Footer from "../components/Footer";
@@ -13,6 +13,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const { login, loading } = useAuthStore();
   const STATE_MACHINE = "Login Machine";
@@ -53,9 +54,9 @@ const Login = () => {
     e.preventDefault();
     const success = validateForm();
     if (!success) return;
-    if (success) await login(input);
-
-    if (success) {
+    const res = await login(input);
+    if (res) {
+      navigate("/");
       trigSuccess?.fire();
     } else {
       trigFail?.fire();

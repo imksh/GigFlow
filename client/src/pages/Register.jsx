@@ -9,7 +9,7 @@ import { motion } from "motion/react";
 import { IoMdEyeOff, IoMdEye } from "react-icons/io";
 import useAuthStore from "../store/useAuthStore";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [data, setData] = useState({
@@ -28,6 +28,7 @@ const Register = () => {
     const { name, value } = e.target;
     setData((item) => ({ ...item, [name]: value }));
   };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,9 +46,12 @@ const Register = () => {
         toast.error("Password didn't matched");
       }
 
-      await register(data);
+      const res = await register(data);
       handleReset(e);
-      setShowAnimation(true);
+      if (res) {
+        navigate("/");
+        setShowAnimation(true);
+      }
     } catch (error) {
       console.log("Error in registration: ", error);
       toast.error(error.response.data.message);
