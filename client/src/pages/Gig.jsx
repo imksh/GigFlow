@@ -4,6 +4,7 @@ import useGigStore from "../store/useGigStore";
 import Loading from "../components/Loading";
 import { toast } from "react-hot-toast";
 import useBidStore from "../store/useBidStore";
+import { TbLoader2 } from "react-icons/tb";
 import useUiStore from "../store/useUiStore";
 import Lottie from "lottie-react";
 import celebrate from "../assets/animations/celebrate.json";
@@ -11,6 +12,7 @@ import Footer from "../components/Footer";
 
 const Gig = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState();
   const [showAnimation, setShowAnimation] = useState(false);
   const [bid, setBid] = useState("");
   const [gig, setGig] = useState({});
@@ -34,6 +36,7 @@ const Gig = () => {
         toast.error("All fields are required");
         return;
       }
+      setLoading(true);
       await addBid({
         gig: id,
         message: bid,
@@ -42,6 +45,7 @@ const Gig = () => {
       setBidsMade(bidsMade + 1);
       setPrice("");
       setBid("");
+      setLoading(false);
       setShowAnimation(true);
       setTimeout(() => {
         setShowAnimation(false);
@@ -51,7 +55,7 @@ const Gig = () => {
     }
   };
 
-  if (loadingGig) {
+  if (loadingGig || loading) {
     return <Loading />;
   }
 
@@ -95,10 +99,15 @@ const Gig = () => {
           />
 
           <button
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer"
+            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer   disabled:bg-slate-400 disabled:cursor-not-allowed"
             typt="submit"
+            disabled={loading}
           >
-            Submit Bid
+            {!loading ? (
+              "Submit Bid"
+            ) : (
+              <TbLoader2 className="size-7 animate-spin" />
+            )}
           </button>
         </form>
       </div>

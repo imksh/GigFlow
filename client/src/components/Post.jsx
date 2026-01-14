@@ -4,6 +4,7 @@ import { IoCreateOutline } from "react-icons/io5";
 import useAuthStore from "../store/useAuthStore";
 import useGigStore from "../store/useGigStore";
 import { toast } from "react-hot-toast";
+import { TbLoader2 } from "react-icons/tb";
 import Lottie from "lottie-react";
 import celebrate from "../assets/animations/celebrate.json";
 import useUiStore from "../store/useUiStore";
@@ -13,6 +14,7 @@ const Post = () => {
   const { user } = useAuthStore();
   const { post } = useGigStore();
   const { gigsPosted, setGigsPosted } = useUiStore();
+  const [loading, setLoading] = useState();
   const [showAnimation, setShowAnimation] = useState(false);
   const [input, setInput] = useState({
     title: "",
@@ -32,6 +34,7 @@ const Post = () => {
       toast.error("All fields are required");
       return;
     }
+    setLoading(true);
     const res = await post(input);
     if (res) {
       setGigsPosted(gigsPosted + 1);
@@ -40,6 +43,7 @@ const Post = () => {
         desc: "",
         budget: "",
       });
+      setLoading(false);
       setShowAnimation(true);
       setTimeout(() => {
         setShowAnimation(false);
@@ -114,10 +118,15 @@ const Post = () => {
                 Cancle
               </button>
               <button
-                className="px-6 py-3 bg-blue-500 text-white hover:bg-blue-700 rounded-xl w-fit m-2 ml-auto cursor-pointer"
+                className="px-6 py-3 bg-blue-500 text-white hover:bg-blue-700 rounded-xl w-fit m-2 ml-auto cursor-pointer  disabled:bg-slate-400 disabled:cursor-not-allowed"
                 type="submit"
+                disabled={loading}
               >
-                Post
+                {!loading ? (
+                  "Post"
+                ) : (
+                  <TbLoader2 className="size-7 animate-spin" />
+                )}
               </button>
             </div>
           </form>
