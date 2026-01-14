@@ -31,7 +31,7 @@ const Landing = () => {
       <section className="max-w-7xl mx-auto px-6 py-12 md:py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div className="text-4xl md:text-5xl font-bold leading-tight">
-            <span>Post a job.</span>{" "}
+            <span className="block lg:inline-block">Post a job.</span>{" "}
             <span className="text-blue-600 inline-block min-h-[1.2em]">
               <AnimatePresence mode="wait">
                 <motion.span
