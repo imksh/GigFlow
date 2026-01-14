@@ -65,7 +65,7 @@ const App = () => {
       onClick={() => {
         setShowHeader(false);
       }}
-      className="hide-scrollbar"
+      className="hide-scrollbar bg-slate-50 min-h-[90dvh]"
     >
       {user ? <UserHeader /> : <Header />}
       <Routes>

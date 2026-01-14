@@ -31,6 +31,12 @@ export default function Home() {
     getAll();
   }, []);
 
+  const getInitials = (name = "") => {
+  const parts = name.trim().split(" ");
+  if (parts.length === 1) return parts[0][0]?.toUpperCase() || "";
+  return `${parts[0][0]} ${parts[1][0]}`.toUpperCase();
+};
+
   if (!user) return <Loading />;
 
   return (
@@ -43,8 +49,8 @@ export default function Home() {
             transition={{ duration: 0.3 }}
             className="flex flex-col border border-slate-300 w-[80%]  mx-auto p-4 rounded-lg hover:shadow-lg"
           >
-            <div className=" text-white bg-blue-400 rounded-full p-4 w-fit mx-auto font-extrabold">
-              {user.name.charAt(0) + " " + user.name.split(" ")[1]?.charAt(0)}
+            <div className=" text-white bg-blue-400 rounded-full p-4 w-fit mx-auto font-extrabold min-w-10 aspect-square text-center">
+              {getInitials(user?.name)}
             </div>
             <h2 className="text-lg font-bold text-blue-500 my-1">
               {user.name}

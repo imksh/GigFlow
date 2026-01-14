@@ -7,6 +7,7 @@ import useBidStore from "../store/useBidStore";
 import useUiStore from "../store/useUiStore";
 import Lottie from "lottie-react";
 import celebrate from "../assets/animations/celebrate.json";
+import Footer from "../components/Footer";
 
 const Gig = () => {
   const { id } = useParams();
@@ -113,6 +114,7 @@ const Gig = () => {
           />
         </>
       )}
+      <Footer />
     </div>
   );
 };

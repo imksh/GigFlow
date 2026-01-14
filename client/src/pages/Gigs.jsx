@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useGigStore from "../store/useGigStore";
 import { useNavigate } from "react-router-dom";
+import Footer from '../components/Footer';
 
 const Gigs = () => {
   const [gigs, setGigs] = useState([]);
@@ -16,8 +17,8 @@ const Gigs = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <h1 className="text-2xl font-bold mb-6">Available Gigs</h1>
+    <div className="max-w-6xl mx-auto px-6 py-10 bg-slate-50">
+      <h1 className="text-2xl font-bold mb-6">My Gigs</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {gigs.map((gig) => (
@@ -45,6 +46,7 @@ const Gigs = () => {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 };

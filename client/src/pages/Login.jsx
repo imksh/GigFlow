@@ -72,7 +72,7 @@ const Login = () => {
   };
 
   return (
-    <div className="pt-[10dvh]">
+    <div className="pt-[10dvh] bg-slate-50">
       <div className="w-52 h-52 rounded-full overflow-hidden mx-auto my-8">
         <RiveComponent />
       </div>

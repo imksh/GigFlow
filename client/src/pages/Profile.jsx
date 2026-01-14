@@ -26,12 +26,18 @@ const Profile = () => {
     fetch();
   }, []);
 
+  const getInitials = (name = "") => {
+  const parts = name.trim().split(" ");
+  if (parts.length === 1) return parts[0][0]?.toUpperCase() || "";
+  return `${parts[0][0]} ${parts[1][0]}`.toUpperCase();
+};
+
   return (
     <div className="min-h-screen bg-slate-50 pt-12 md:pt-24 px-6">
       <div className="max-w-5xl mx-auto bg-white border border-slate-200 rounded-xl px-4 py-6 md:p-6 flex items-baseline justify-between md:items-center gap-4 flex-col md:flex-row">
         <div className="flex gap-4 items-center">
-          <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-600 text-white flex items-center justify-center rounded-full text-xl font-bold ">
-            {user.name.charAt(0) + " " + user.name.split(" ")[1]?.charAt(0)}
+          <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-600 text-white flex items-center justify-center rounded-full text-xl font-bold min-w-10 aspect-square text-center">
+            {getInitials(user?.name)}
           </div>
           <div>
             <p className="font-semibold text-slate-900">{user.name}</p>

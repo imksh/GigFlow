@@ -13,6 +13,11 @@ const UserHeader = () => {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const { user } = useAuthStore();
+  const getInitials = (name = "") => {
+    const parts = name.trim().split(" ");
+    if (parts.length === 1) return parts[0][0]?.toUpperCase() || "";
+    return `${parts[0][0]} ${parts[1][0]}`.toUpperCase();
+  };
   if (!user) return null;
   return (
     <div
@@ -67,13 +72,11 @@ const UserHeader = () => {
           </div>
           <Link to="/profile">
             <div
-              className={`text-white border bg-blue-400 rounded-full p-2 ${
+              className={`text-white border bg-blue-400 rounded-full p-2 min-w-10 aspect-square text-center ${
                 location === "/profile" ? "border-white" : "border-(--primary) "
               }`}
             >
-              {user?.name?.charAt(0) +
-                " " +
-                user?.name?.split(" ")[1]?.charAt(0)}
+              {getInitials(user?.name)}
             </div>
           </Link>
         </div>

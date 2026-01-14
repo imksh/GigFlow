@@ -87,7 +87,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col  items-center justify-center  w-full my-8 hide-scrollbar">
+    <div className="flex flex-col bg-slate-50  items-center justify-center  w-full py-8 hide-scrollbar">
       <img src={logo} className="w-30 " />
       <p className="my-5">You’re one step away from starting your next job.</p>
       <form
@@ -211,6 +211,9 @@ const Register = () => {
           </Link>
         </p>
       </form>
+      <div className="w-full my-16">
+        <Footer />
+      </div>
 
       {showAnimation && (
         <>
@@ -226,7 +229,6 @@ const Register = () => {
           />
         </>
       )}
-      <Footer />
     </div>
   );
 };

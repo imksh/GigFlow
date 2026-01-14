@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useBidStore from "../store/useBidStore";
+import Footer from "../components/Footer";
 
 const Bids = () => {
   const [bids, setBids] = useState([]);
@@ -27,12 +28,8 @@ const Bids = () => {
             onClick={() => navigate(`/gigs/${bid.gig._id}`)}
           >
             {/* Gig info */}
-            <h3 className="font-semibold text-lg">
-              {bid.gig.title}
-            </h3>
-            <p className="text-gray-500 mt-2 line-clamp-2">
-              {bid.gig.desc}
-            </p>
+            <h3 className="font-semibold text-lg">{bid.gig.title}</h3>
+            <p className="text-gray-500 mt-2 line-clamp-2">{bid.gig.desc}</p>
 
             <div className="flex justify-between items-center mt-4">
               <div>
@@ -58,7 +55,13 @@ const Bids = () => {
             </div>
           </div>
         ))}
+        {bids.length === 0 && (
+          <div className="grow justify-center items-center flex w-full h-full">
+            No Bids Available
+          </div>
+        )}
       </div>
+      <Footer />
     </div>
   );
 };

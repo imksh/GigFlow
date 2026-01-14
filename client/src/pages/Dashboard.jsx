@@ -1,6 +1,6 @@
 import useUiStore from "../store/useUiStore";
 import useAuthStore from "../store/useAuthStore";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
 import {
   BarChart,
   Bar,
@@ -30,13 +30,19 @@ const Dashboard = () => {
     { month: "Feb", amount: 12000 },
     { month: "Mar", amount: 18000 },
   ];
+
+  const getInitials = (name = "") => {
+    const parts = name.trim().split(" ");
+    if (parts.length === 1) return parts[0][0]?.toUpperCase() || "";
+    return `${parts[0][0]} ${parts[1][0]}`.toUpperCase();
+  };
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 bg-slate-50">
       <div className="max-w-5xl mx-auto bg-white border border-slate-200 rounded-xl px-4 py-6 md:p-6 flex items-center justify-between">
         <div className="flex items-baseline gap-4 w-full flex-col sm:flex-row">
           <div className="flex gap-4">
-            <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-600 text-white flex items-center justify-center rounded-full text-xl font-bold">
-              {user.name.charAt(0) + " " + user.name.split(" ")[1]?.charAt(0)}
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-600 text-white flex items-center justify-center rounded-full text-xl font-bold min-w-10 aspect-square text-center">
+              {getInitials(user?.name)}
             </div>
             <div>
               <p className="font-semibold text-slate-900">{user.name}</p>
@@ -88,7 +94,7 @@ const Dashboard = () => {
         </div> */}
       </div>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -20,6 +20,12 @@ const Post = () => {
     budget: "",
   });
 
+  const getInitials = (name = "") => {
+    const parts = name.trim().split(" ");
+    if (parts.length === 1) return parts[0][0]?.toUpperCase() || "";
+    return `${parts[0][0]} ${parts[1][0]}`.toUpperCase();
+  };
+
   const handlePost = async (e) => {
     e.preventDefault();
     if (!input.title || !input.desc || !input.budget) {
@@ -61,8 +67,8 @@ const Post = () => {
           <p className="text-2xl font-bold text-blue-500 mx-auto col-span-2 mt-4 text-center">
             Post a Gig
           </p>
-          <div className="hidden sm:block text-white bg-blue-400 rounded-full p-4 w-fit h-fit mx-auto my-8 font-extrabold">
-            {user.name.charAt(0) + " " + user.name.split(" ")[1]?.charAt(0)}
+          <div className="hidden sm:block text-white bg-blue-400 rounded-full p-4 w-fit h-fit mx-auto my-8 font-extrabold min-w-14 aspect-square text-center">
+            {getInitials(user?.name)}
           </div>
           <form
             className="flex flex-col p-4 gap-4 w-full col-span-2 sm:col-span-1"
