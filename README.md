@@ -2,9 +2,16 @@
 **A real-time freelance bidding marketplace**
 
 GigFlow is a full-stack platform where **clients post gigs** and **freelancers compete by placing bids**.  
-Clients instantly hire the best offer, and all other bids are automatically rejected.
+Clients hire the best offer, and all other bids are automatically rejected.
 
 This is not a listing site — it is a **live reverse-marketplace**.
+
+---
+
+## 🌐 Live Links
+
+- **Frontend:** https://imkhs-gigflow.netlify.app  
+- **Backend:** https://gigflow-n32p.onrender.com 
 
 ---
 
@@ -13,7 +20,7 @@ This is not a listing site — it is a **live reverse-marketplace**.
 ### 👤 Authentication
 - User registration & login  
 - JWT authentication stored in **HttpOnly cookies**  
-- Secure password hashing (bcrypt)
+- Secure password hashing using bcrypt  
 
 ### 🧑‍💼 For Clients
 - Post gigs (title, description, budget)  
@@ -25,12 +32,8 @@ This is not a listing site — it is a **live reverse-marketplace**.
 ### 🧑‍💻 For Freelancers
 - Browse open gigs  
 - Submit bids with message & price  
-- Track bid status:
-  - `pending`
-  - `hired`
-  - `rejected`
-- View all bids  
-- See when you get hired  
+- Track bid status (`pending`, `hired`, `rejected`)  
+- View all bids   
 
 ### 📊 Dashboard
 - Gigs posted  
@@ -48,19 +51,20 @@ This is not a listing site — it is a **live reverse-marketplace**.
 
 ## 🛠 Tech Stack
 
-### Frontend
+**Frontend**
 - React (Vite)
 - Tailwind CSS
-- Zustand (state management)
+- Zustand
 - Axios
 - React Router
-- Framer Motion (animations)
-- Recharts (dashboard graphs)
+- Framer Motion
+- Recharts
 
-### Backend
+**Backend**
 - Node.js
 - Express.js
-- MongoDB + Mongoose
+- MongoDB
+- Mongoose
 - JWT Authentication
 - HttpOnly Cookies
 - MongoDB Transactions
@@ -69,25 +73,25 @@ This is not a listing site — it is a **live reverse-marketplace**.
 
 ## 🗄 Database Models
 
-### User
-- `name`
-- `email`
-- `password` (hashed)
+**User**
+- name
+- email
+- password (hashed)
 
-### Gig
-- `title`
-- `desc`
-- `budget`
-- `owner`
-- `status` (open, assigned)
-- `createdAt`
+**Gig**
+- title
+- desc
+- budget
+- owner
+- status (open, assigned)
+- createdAt
 
-### Bid
-- `gig`
-- `freelancer`
-- `price`
-- `message`
-- `status` (pending, hired, rejected)
+**Bid**
+- gig
+- freelancer
+- price
+- message
+- status (pending, hired, rejected)
 
 ---
 
@@ -95,15 +99,21 @@ This is not a listing site — it is a **live reverse-marketplace**.
 
 When a client hires a freelancer:
 
-1. The gig status becomes `assigned`
-2. The selected bid becomes `hired`
+1. Gig status becomes `assigned`
+2. Selected bid becomes `hired`
 3. All other bids become `rejected`
-4. This is executed inside a **MongoDB transaction** to prevent race conditions
+4. This is executed inside a MongoDB transaction to prevent race conditions  
 
-Only one freelancer can ever be hired for a gig.
+Only one freelancer can be hired per gig.
 
 ---
 
 ## ⚙️ Environment Variables
 
 Create a `.env` file in the backend:
+
+```env
+PORT=5001
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+NODE_ENV=development
