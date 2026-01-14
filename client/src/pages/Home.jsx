@@ -10,6 +10,7 @@ import GigCard from "../components/GigCard";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 
 export default function Home() {
   const { user } = useAuthStore();
@@ -29,6 +30,8 @@ export default function Home() {
   useEffect(() => {
     getAll();
   }, []);
+
+  if (!user) return <Loading />;
 
   return (
     <div>

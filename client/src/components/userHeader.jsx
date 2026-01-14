@@ -13,6 +13,7 @@ const UserHeader = () => {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const { user } = useAuthStore();
+  if (!user) return null;
   return (
     <div
       className={`fixed top-0 left-0 w-full z-99 bg-(--primary) text-black font-bold flex flex-col  md:px-16 min-h-[10dvh] justify-center ${
@@ -70,7 +71,9 @@ const UserHeader = () => {
                 location === "/profile" ? "border-white" : "border-(--primary) "
               }`}
             >
-              {user.name.charAt(0) + " " + user.name.split(" ")[1]?.charAt(0)}
+              {user?.name?.charAt(0) +
+                " " +
+                user?.name?.split(" ")[1]?.charAt(0)}
             </div>
           </Link>
         </div>
