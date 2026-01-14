@@ -30,12 +30,9 @@ export const register = async (req, res, next) => {
     generateToken(newUser, res);
 
     res.status(201).json({
-      message: "Signed up successfully",
-      user: {
-        id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-      },
+      id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
     });
   } catch (error) {
     console.log("Error in signup controller", error);
