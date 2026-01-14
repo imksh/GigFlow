@@ -209,9 +209,9 @@ const Register = () => {
         </div>
 
         <p className="mx-auto text-center">
-          Didn't have an account?{" "}
-          <Link to="/register" className="underline text-blue-500 ">
-            Register
+          Already have an account?{" "}
+          <Link to="/login" className="underline text-blue-500 ">
+            Login
           </Link>
         </p>
       </form>
